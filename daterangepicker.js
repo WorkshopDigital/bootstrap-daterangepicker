@@ -422,15 +422,16 @@
             .on('mouseenter.daterangepicker', 'li', $.proxy(this.hoverRange, this))
             .on('mouseleave.daterangepicker', 'li', $.proxy(this.updateFormInputs, this));
 
-        if (this.element.is('input') || this.element.is('button')) {
+        if (this.calendarAlwaysOpen) {
+            this.show();
+        } 
+        else if (this.element.is('input') || this.element.is('button')) {
             this.element.on({
                 'click.daterangepicker': $.proxy(this.show, this),
                 'focus.daterangepicker': $.proxy(this.show, this),
                 'keyup.daterangepicker': $.proxy(this.elementChanged, this),
                 'keydown.daterangepicker': $.proxy(this.keydown, this)
             });
-        } else if (this.calendarAlwaysOpen) {
-            this.show();
         } else {
             this.element.on('click.daterangepicker', $.proxy(this.toggle, this));
         }
